@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!define DARKBLUE
+!include styles.puml
+
+scale 1
+
+class Technology {
+    name: string
+}
+
+class Project {
+    cover: Image
+    description: text
+    type: ProjectType
+    yearOfRealization: int
+    image2: Image = null
+    image3: Image = null
+    image4: Image = null
+    link: string = null
+}
+
+Enum ProjectType {
+    PERSONAL
+    CLIENT
+    INTERNSHIP
+}
+
+class User {
+    username: string
+    password: string
+}
+
+User "1" -right- "*" Project : Add
+Technology "Many" --o "Many" Project : Has
+
+@enduml

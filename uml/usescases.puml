@@ -1,0 +1,35 @@
+@startuml
+
+!define DARKBLUE
+!include styles.puml
+
+left to right direction
+scale 1.5
+
+actor user as "L'utilisateur"
+actor Admin as "L'Administrateur"
+
+rectangle Portfolio {
+    ''''''''''''''''''''''''''''''
+    '    Use Cases Definition    '
+    ''''''''''''''''''''''''''''''
+
+    usecase manageProjects as "Gérer les projets"
+    usecase seeProjects as "Voir les projets"
+
+
+    ''''''''''''''''''''''''''''''
+    '       Associations         '
+    ''''''''''''''''''''''''''''''
+
+    ' For user Actor
+    user -- (seeProjects)
+
+    ' For Admin Actor
+    (manageProjects) -- Admin
+
+    ' Use Cases Assocations
+
+}
+
+@enduml
