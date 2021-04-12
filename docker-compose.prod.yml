@@ -38,8 +38,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=symfony
-    ports:
-      - 127.0.0.1:3350:3306
     deploy:
       resources:
         limits:
