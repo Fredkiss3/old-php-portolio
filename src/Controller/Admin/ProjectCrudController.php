@@ -73,7 +73,5 @@ class ProjectCrudController extends AbstractCrudController
             ->onlyOnForms()
             ->setFormType(VichImageType::class)
         ;
-
-
     }
 }

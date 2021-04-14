@@ -15,6 +15,6 @@ class TechnologyCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-           yield TextField::new('name', 'Nom');
+        yield TextField::new('name', 'Nom');
     }
 }
