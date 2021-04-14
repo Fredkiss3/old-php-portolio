@@ -43,7 +43,7 @@ class PortfolioWebTest extends WebTestCase
 
         $projects = $this->em->getRepository(Project::class)->findAll();
 
-        $this->assertEquals(count($projects), $crawler->filter('h2')->count());
+        $this->assertEquals(count($projects), $crawler->filter('h3')->count());
     }
 
     public function testProjectDetailSuccessfull()
