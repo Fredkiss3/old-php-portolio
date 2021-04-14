@@ -15,7 +15,7 @@ class PortfolioController extends AbstractController
      */
     public function index(EntityManagerInterface $em): Response
     {
-        $project = $em->getRepository(Project::class)->findAll();
+        $project = $em->getRepository(Project::class)->findBy([], ['yearOfRealization' => 'desc']);
 
         return $this->render('pages/index.html.twig', [
             'projects' => $project,
