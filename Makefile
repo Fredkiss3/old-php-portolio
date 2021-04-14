@@ -69,6 +69,7 @@ install: ### Installe les différentes dépendances
 	APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:migrations:migrate --no-interaction --env=prod
 	APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:clear --env=prod
 	APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:pool:clear cache.global_clearer --env=prod
+	APP_ENV=prod APP_DEBUG=0 $(php) symfony console assets:install --env=prod
 	APP_ENV=prod APP_DEBUG=0 $(php) composer dump-autoload
 
 opendb: ### Entre dans le service de base de données
