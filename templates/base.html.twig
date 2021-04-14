@@ -1,19 +1,127 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<!doctype html>
+<html lang="en">
+<!-- Mirrored from focus.11bits.es/portfolio-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Mar 2021 18:46:00 GMT -->
+<head>
+    <title>{% block title %}Adrien KISSIE{% endblock %} | Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <!-- Goole fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,600%7CFira+Sans:300,400,400i,600"
+          rel="stylesheet">
+
+    <!-- Material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" integrity="sha512-apX8rFN/KxJW8rniQbkvzrshQ3KvyEH+4szT3Sno5svdr6E/CP0QE862yEeLBMUnCqLko8QaugGkzvWS7uNfFQ==" crossorigin="anonymous" />#}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"
+            integrity="sha512-G3jAqT2eM4MMkLMyQR5YBhvN5/Da3IG6kqgYqU9zlIH4+2a+GuMdLb5Kpxy6ItMdCfgaKlo2XFhI0dHtMJjoRw=="
+            crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('assets/img/icon.png') }}" type="image/png">
+
+    <!-- JS -->
+    <script src="{{ asset('assets/js/theme.js') }}" defer></script>
+    <style>
+        .text-success {
+            color: #26a65b !important;
+        }
+
+        .text-info {
+            color: #00acc1 !important;
+        }
+
+        .text-warning {
+            color: #f9690e !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header fixed-top bg-black border-bottom bg-dark">
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div class="container">
+
+        <!-- Navbar -->
+        <nav class="navbar main-nav navbar-expand-lg navbar-dark" aria-label="Main navigation">
+            <a href="{{ path('portfolio.index') }}" class="navbar-brand d-inline-flex text-uppercase">AK <i
+                        class="material-icons ml-2" aria-hidden="true">adjust</i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-uppercase" id="navbarContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('portfolio.about') }}"
+                           class="nav-link {% if app.request.get('_route') == 'portfolio.about' %} active {% endif %}">
+                            A PROPOS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mailto:fredkiss3@gmail.com"
+                           class="nav-link">
+                            CONTACT
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<main id="content">
+    {% block body %}
+    {% endblock %}
+
+
+    {% if app.request.get('_route') != 'portfolio.about' %}
+        <!-- Call to action -->
+        <div class="bg-primary text-dark text-center">
+            <div class="container py-6">
+                <h3 class="h3">Je vous aide à concevoir, réaliser et déployer vos sites web en ligne de A à Z</h3>
+                <p class="lead mb-4">Avec soin et amour 😉.</p>
+                <a href="mailto:fredkiss3@gmail.com" class="btn btn-outline-dark">Contactez-moi</a>
+
+                <div class="text-center mt-4">
+                    <p class="lead">
+                        Ou retrouvez moi sur les réseaux sociaux :
+                    </p>
+                    <a href="https://facebook.com/fred.kissie"  target="_blank">
+                        <svg
+                                style="height: 2em;"
+                                aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" class="svg-inline--fa fa-facebook fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/@fredkiss7" style="margin-left: 1.5rem;" target="_blank">
+                        <svg
+                                style="height: 2em;"
+                                aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/fredhel-kissie-3b6b32162" style="margin-left: 1.5rem;"  target="_blank">
+                        <svg
+                                style="height: 2em;"
+                                aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</main>
+
+
+<footer class="bg-white text-dark">
+    <div class="container py-5 py-md-6">
+        Copyright &copy; 2021 <a href="//csdevtech.com" class="text-primary" target="_blank">CSDEV-Technologies</a>
+    </div>
+</footer>
+
+</body>
+
 </html>
+

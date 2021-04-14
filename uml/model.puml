@@ -11,6 +11,8 @@ class Technology {
 }
 
 class Project {
+    title: string
+    excerpt: string
     cover: Image
     description: text
     type: ProjectType
@@ -27,12 +29,12 @@ Enum ProjectType {
     INTERNSHIP
 }
 
-class User {
-    username: string
-    password: string
-}
+'class User {
+'    username: string
+'    password: string
+'}
 
-User "1" -right- "*" Project : Add
+'User "1" -right- "*" Project : Add
 Technology "Many" --o "Many" Project : Has
 
 @enduml

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Page Non trouvée
+{% endblock %}
+
+{% block body %}
+    <div class="container pt-5 pt-lg-6">
+        <h1 class="display-4 mb-5"> OOPS ! Il semblerait que vous soyez perdus !</h1>
+        <p class="lead text-secondary">Pas de problème, vous pouvez revenir au site en
+            <a href="{{ path('portfolio.index') }}" class="btn btn-primary">Clickant ici</a>
+        </p>
+    </div>
+{% endblock %}

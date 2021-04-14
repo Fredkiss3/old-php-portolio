@@ -1,0 +1,42 @@
+
+
+App\Entity\Technology:
+  php:
+    name: 'PHP'
+  symfony:
+    name: 'Symfony'
+  css:
+    name: 'CSS'
+  mysql:
+    name: 'mariadb'
+  node:
+    name: 'node'
+
+App\Entity\Project:
+  project.stage{1..5}:
+    title: <word()>
+    cover: 'image.png'
+    description: <sentence()>
+    type: INTERNSHIP
+    yearOfRealization: <date('Y')>
+    link: <url()>
+    technologies: [ '@php', '@css', '@mysql' ]
+
+  project.client{1..5}:
+    title: <word()>
+    cover: 'image.png'
+    description: <sentence()>
+    type: CLIENT
+    yearOfRealization: <date('Y')>
+    link: <url()>
+    technologies: [ '@symfony', '@mysql' ]
+
+  project.personal{1..5}:
+    title: <word()>
+    cover: 'image.png'
+    description: <sentence()>
+    type: PERSONAL
+    yearOfRealization: <date('Y')>
+    link: <url()>
+    technologies: [ '@node', '@css' ]
+

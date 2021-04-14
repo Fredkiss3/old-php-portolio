@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détail du Projet : {{ project.title }}
+{% endblock %}
+
+{% block body %}
+
+    <!-- Hero -->
+    <div class="container pt-5 pt-lg-6">
+        <h1 class="display-4 mb-5">{{ project.title }}</h1>
+
+        <img src="{{ vich_uploader_asset(project, 'coverFile') }}" class="border-dark img-thumbnail mb-4"
+             alt="Architecture website">
+
+        <dl class="row text-md-center mb-5">
+            {% if project.link %}
+                <div class="col-md-4">
+                    <dt class="font-weight-light text-secondary">Lien du projet</dt>
+                    <dd><a class="text-primary" href="{{ project.link }}" target="_blank">{{ project.link }}</a></dd>
+                </div>
+            {% endif %}
+
+            <div class="{% if project.link %} col-md-4 {% else %} col-md-6 {% endif %}">
+                <dt class="font-weight-light text-secondary">Type de projet</dt>
+                <dd>
+                    {% if project.type == constant('App\\Entity\\Project::TYPE_CLIENT') %}
+                        Projet client
+                    {% elseif project.type == constant('App\\Entity\\Project::TYPE_INTERNSHIP') %}
+                        Stage
+                    {% elseif project.type == constant('App\\Entity\\Project::TYPE_PERSONAL') %}
+                        Projet Personnel
+                    {% endif %}
+                </dd>
+            </div>
+            <div class="{% if project.link %} col-md-4 {% else %} col-md-6 {% endif %}">
+                <dt class="font-weight-light text-secondary">Année</dt>
+                <dd>{{ project.yearOfRealization }}</dd>
+            </div>
+
+
+        </dl>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h2 class="mb-5">Le projet</h2>
+                <article>
+                    {{ project.description|raw }}
+                </article>
+
+                <h3 class="h4 my-4">Technologies utilisées</h3>
+                <ul>
+                    {% for tech in project.technologies %}
+                        <li>{{ tech.name }}</li>
+                    {% endfor %}
+                </ul>
+
+                {% if project.image2 or project.image3 %}
+                    <h3 class="h4 my-5">Images du projet</h3>
+                {% endif %}
+                {% if project.image2 %}
+                    <img src="{{ vich_uploader_asset(project, 'image2File') }}" class="border-dark img-thumbnail mb-4" alt="Portfolio page"
+                         data-action="zoom">
+                {% endif %}
+
+                {% if project.image3 %}
+                    <img src="{{ vich_uploader_asset(project, 'image3File') }}" class="border-dark img-thumbnail mb-4" alt="Portfolio page"
+                         data-action="zoom">
+                {% endif %}
+
+                <div class="text-center my-6">
+                    <a href="{{ path('portfolio.index') }}" class="btn btn-outline-white">Voir tous les projets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

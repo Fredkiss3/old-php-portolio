@@ -1,0 +1,5 @@
+
+App\Entity\User:
+  user:
+    username: fredkiss
+    password: \$2y\$12\$c6VC66J8SR5dB5HFIukTyeASaUHGRcYaBPZmFBrB.tvOOgdxXGVHu # password

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Hero -->
+    <div class="container py-5 pt-lg-6">
+        <div class="row">
+            <div class="col-lg-9">
+                <p class="lead text-secondary">Hello World ! je suis,</p>
+            </div>
+        </div>
+        <h1 class="display-3">Adrien KISSIE</h1>
+        <div class="row">
+            <div class="col-lg-9">
+                <p class="lead text-secondary">Et je suis <b>Développeur web</b>
+                </p>
+            </div>
+        </div>
+        <hr class="border-2 border-light my-4 ml-0 text-left w-15" role="presentation">
+    </div>
+
+    <!-- Projects -->
+    <div class="container mb-4">
+        <div class="row mb-4">
+            <div class="col-lg-9">
+                <h2 class="text-secondary" style="font-family: Fira Sans,sans-serif;">Retrouvez mes réalisations :
+                </h2>
+            </div>
+        </div>
+
+
+        {% for project in projects %}
+            {% if loop.index0 % 2 == 0 %}
+                <div class="row justify-content-lg-between align-items-center pb-5 pb-lg-6">
+                    <div class="col-lg-5 order-lg-2 mb-2 mb-lg-0">
+                        <h2 class="h3 font-weight-normal">{{ project.title }}</h2>
+                        <p class="font-weight-light text-light">{{ project.excerpt|raw }}</p>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <a href="{{ path('porfolio.project_detail', {slug: project.slug, id:project.id}) }}">
+                            <figure class="img-overlay">
+                                <img src="{{ vich_uploader_asset(project, 'coverFile') }}" alt="Architecture landing page"
+                                     class="border-dark img-thumbnail">
+                                <div class="img-hover">
+                                    <p class="img-text">Voir le projet</p>
+                                </div>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row justify-content-lg-between align-items-center pb-5 pb-lg-6">
+                    <div class="col-lg-5 mb-2 mb-lg-0">
+                        <h2 class="h3 font-weight-normal">{{ project.title }}</h2>
+                        <p class="font-weight-light text-light">{{ project.excerpt|raw }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="{{ path('porfolio.project_detail', {slug: project.slug, id:project.id}) }}">
+                            <figure class="img-overlay">
+                                <img src="{{ vich_uploader_asset(project, 'coverFile') }}" alt="Interior Design landing page"
+                                     class="border-dark img-thumbnail">
+                                <div class="img-hover">
+                                    <p class="img-text">Voir le projet</p>
+                                </div>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
