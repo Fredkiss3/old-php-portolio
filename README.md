@@ -1,4 +1,4 @@
-![Build Status2](https://github.com/Fredkiss3/portfolio/workflows/Continous%20Integrations%20And%20Continous%20Delivery/badge.svg?branch=main)
+![Build Status](https://github.com/Fredkiss3/portfolio/workflows/CI_CD/badge.svg?branch=main)
 
 # portolio
 Mon portfolio personnel
