@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,12 +15,18 @@ class PortfolioController extends AbstractController
     /**
      * @Route("/", name="portfolio.index")
      */
-    public function index(EntityManagerInterface $em): Response
+    public function index(ProjectRepository $repository, Request $request): Response
     {
-        $project = $em->getRepository(Project::class)->findBy([], ['yearOfRealization' => 'desc']);
+        $techno = $request->query->get('techno');
+
+        if (null != $techno) {
+            $projects = $repository->findByTechno($techno);
+        } else {
+            $projects = $repository->findBy(['draft' => false], ['yearOfRealization' => 'desc']);
+        }
 
         return $this->render('pages/index.html.twig', [
-            'projects' => $project,
+            'projects' => $projects,
         ]);
     }
 
@@ -35,7 +43,7 @@ class PortfolioController extends AbstractController
      */
     public function detail(string $slug, int $id, EntityManagerInterface $em): Response
     {
-        $project = $em->getRepository(Project::class)->find($id);
+        $project = $em->getRepository(Project::class)->findOneBy(['id' => $id, 'draft' => false]);
 
         if (null == $project) {
             throw $this->createNotFoundException('Ce projet n\'existe pas');
