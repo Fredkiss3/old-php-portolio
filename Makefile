@@ -16,7 +16,7 @@ help: ### Affiche cette aide
 
 
 deploy: ### Déploie une nouvelle version du site
-	ssh -p $(DEPLOY_PORT) $(server) 'cd $(dir) && git pull origin main && make install && make prod'
+	ssh -p $(DEPLOY_PORT) $(server) 'cd $(dir) && git pull origin main && make install && make ccprod && make prod'
 
 admin: ### Génère le dashboard admin
 	$(sc) make:admin:dashboard
@@ -64,13 +64,16 @@ cc: ### Clear cache in dev
 	$(sc) cache:pool:clear cache.global_clearer
 
 install: ### Installe les différentes dépendances
-	APP_ENV=prod APP_DEBUG=0 COMPOSE_HTTP_TIMEOUT=200 $(php) composer install --no-dev --optimize-autoloader --no-scripts
-	APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:database:create --if-not-exists --env=prod
-	APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:migrations:migrate --no-interaction --env=prod
-	APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:clear --env=prod
-	APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:pool:clear cache.global_clearer --env=prod
-	APP_ENV=prod APP_DEBUG=0 $(php) symfony console assets:install --env=prod
-	APP_ENV=prod APP_DEBUG=0 $(php) composer dump-autoload
+        APP_ENV=prod APP_DEBUG=0 COMPOSE_HTTP_TIMEOUT=200 $(php) composer install --no-dev --optimize-autoloader --no-scripts
+        APP_ENV=prod APP_DEBUG=0 $(php) composer dump-autoload
+        APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:database:create --if-not-exists --env=prod
+        APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:migrations:migrate --no-interaction --env=prod
+        APP_ENV=prod APP_DEBUG=0 $(php) symfony console assets:install --env=prod
+
+ccprod:
+        APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:clear --env=prod
+        APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:pool:clear cache.global_clearer --env=prod
+
 
 opendb: ### Entre dans le service de base de données
 	$(dc) -f docker-compose.prod.yml exec db mysql -uroot -pfredkiss
