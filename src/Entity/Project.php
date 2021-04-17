@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -132,14 +133,32 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
+     * @Assert\Length(max=150, maxMessage="Résumé trop long")
      *
      * @var string
      */
     private $excerpt;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     *
+     * @var bool
+     */
+    private $draft = true;
+
     public function __construct()
     {
         $this->technologies = new ArrayCollection();
+    }
+
+    public function isDraft(): bool
+    {
+        return $this->draft;
+    }
+
+    public function setDraft(bool $draft): void
+    {
+        $this->draft = $draft;
     }
 
     public function getCoverFile(): ?File
