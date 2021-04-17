@@ -3,6 +3,8 @@
 namespace App\Tests;
 
 use App\Entity\Project;
+use App\Entity\Technology;
+use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -15,7 +17,7 @@ class PortfolioWebTest extends WebTestCase
     const BASE_HOST = 'http://localhost';
 
     /**
-     * @var array|Project[]
+     * @var array|Project[]|Technology[]
      */
     protected array $entities = [];
 
@@ -41,14 +43,14 @@ class PortfolioWebTest extends WebTestCase
         $crawler = $this->client->request('GET', '/');
         $this->assertResponseIsSuccessful();
 
-        $projects = $this->em->getRepository(Project::class)->findAll();
+        $projects = $this->em->getRepository(Project::class)->findBy(['draft' => false]);
 
         $this->assertEquals(count($projects), $crawler->filter('h3')->count());
     }
 
     public function testProjectDetailSuccessfull()
     {
-        $project = $this->entities['project.client1'];
+        $project = $this->entities['project.show1'];
 
         $this->client->request('GET', '/'.$project->getSlug().'-'.$project->getId());
         $this->assertResponseIsSuccessful();
@@ -58,7 +60,7 @@ class PortfolioWebTest extends WebTestCase
 
     public function testRedirectToCorrectSlugIfBadSlug()
     {
-        $project = $this->entities['project.stage1'];
+        $project = $this->entities['project.show1'];
 
         $this->client->request('GET', '/azeaze-'.$project->getId());
         $this->assertResponseRedirects(
@@ -73,11 +75,33 @@ class PortfolioWebTest extends WebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
+    public function testShow404IfDraftProject()
+    {
+        $project = $this->entities['project.draft1'];
+
+        $this->client->request('GET', '/'.$project->getSlug().'-'.$project->getId());
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
     public function testAboutPage()
     {
         $this->client->request('GET', '/a-propos');
         $this->assertResponseIsSuccessful();
 
         $this->assertSelectorTextContains('h1', 'A propos');
+    }
+
+    public function testShowProjectsByTechno()
+    {
+        /** @var Technology $techo */
+        $techo = $this->entities['node'];
+
+        $crawler = $this->client->request('GET', '/?techno='.$techo->getName());
+        $this->assertResponseIsSuccessful();
+
+        $repo = self::$container->get(ProjectRepository::class);
+
+        $projects = $repo->findByTechno($techo->getName());
+        $this->assertEquals(count($projects), $crawler->filter('h3')->count());
     }
 }

@@ -13,8 +13,9 @@ App\Entity\Technology:
     name: 'node'
 
 App\Entity\Project:
-  project.stage{1..5}:
+  project.show{1..5}:
     title: <word()>
+    draft: false
     cover: 'image.png'
     description: <sentence()>
     type: INTERNSHIP
@@ -22,8 +23,20 @@ App\Entity\Project:
     link: <url()>
     technologies: [ '@php', '@css', '@mysql' ]
 
-  project.client{1..5}:
+  project.node{1..5}:
     title: <word()>
+    draft: false
+    cover: 'image.png'
+    description: <sentence()>
+    type: INTERNSHIP
+    yearOfRealization: <date('Y')>
+    link: <url()>
+    technologies: [ '@php', '@css', '@node' ]
+
+
+  project.draft{1..5}:
+    title: <word()>
+    draft: true
     cover: 'image.png'
     description: <sentence()>
     type: CLIENT
@@ -31,12 +44,5 @@ App\Entity\Project:
     link: <url()>
     technologies: [ '@symfony', '@mysql' ]
 
-  project.personal{1..5}:
-    title: <word()>
-    cover: 'image.png'
-    description: <sentence()>
-    type: PERSONAL
-    yearOfRealization: <date('Y')>
-    link: <url()>
-    technologies: [ '@node', '@css' ]
+
 
