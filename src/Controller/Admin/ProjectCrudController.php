@@ -24,7 +24,8 @@ class ProjectCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield BooleanField::new('draft', 'Brouillon ?');
+        yield BooleanField::new('draft', 'Brouillon ?')
+            ->onlyOnForms();
 
         yield ImageField::new('cover', 'Image')
             ->onlyOnIndex()
