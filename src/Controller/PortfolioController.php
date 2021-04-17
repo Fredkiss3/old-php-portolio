@@ -27,6 +27,7 @@ class PortfolioController extends AbstractController
 
         return $this->render('pages/index.html.twig', [
             'projects' => $projects,
+            'techno' => $techno,
         ]);
     }
 

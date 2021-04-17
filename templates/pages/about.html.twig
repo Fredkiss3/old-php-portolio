@@ -37,21 +37,22 @@
                         </p>
                         <ul>
                             <li>
-                                Développement Backend avec <a  target="_blank" class="underlined" href="https://djangoproject.com/">Python/Django</a>, <a
-                                            href="https://php.net" target="_blank" class="underlined">PHP</a>,
-                                <a target="_blank"  class="underlined" href="https://symfony.com">Symfony</a>,
-                                <a target="_blank"  class="underlined" href="https://laravel.com">Laravel</a> et
-                                <a target="_blank"  class="underlined" href="https://codeigniter.com/">CodeIgniter</a>
+                                Développement Backend avec
+                                <a  class="underlined" href="{{ path('portfolio.index') }}?techno=Django">Python/Django</a>, <a
+                                            href="{{ path('portfolio.index') }}?techno=PHP" class="underlined">PHP</a>,
+                                <a class="underlined" href="{{ path('portfolio.index') }}?techno=Symfony">Symfony</a>,
+                                <a class="underlined" href="{{ path('portfolio.index') }}?techno=Laravel">Laravel</a> et
+                                <a class="underlined" href="{{ path('portfolio.index') }}?techno=CodeIgniter">CodeIgniter</a>
                             </li>
                             <li>Développement FrontEnd avec
-                                <a target="_blank"  href="https://reactjs.org" class="underlined">React</a>
+                                <a href="{{ path('portfolio.index') }}?techno=React" class="underlined">React</a>
                             </li>
                             <li>Développement d'applications Mobiles avec
-                                <a  target="_blank" href="https://flutter.dev" class="underlined">Flutter</a> et
-                                <a target="_blank"  class="underlined" href="https://developer.android.com/studio">Android Studio</a></li>
+                                <a href="{{ path('portfolio.index') }}?techno=Flutter" class="underlined">Flutter</a> et
+                                <a class="underlined" href="{{ path('portfolio.index') }}?techno=Studio">Android Studio</a></li>
                             <li>Administration de Serveurs Linux </li>
                             <li>Déployement de sites avec
-                                <a  target="_blank"  href="https://docker.com" class="underlined">Docker</a>
+                                <a href="{{ path('portfolio.index') }}?techno=Docker" class="underlined">Docker</a>
                             </li>
                         </ul>
 
