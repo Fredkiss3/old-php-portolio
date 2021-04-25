@@ -16,7 +16,7 @@ help: ### Affiche cette aide
 
 
 deploy: ### Déploie une nouvelle version du site
-	ssh -p $(DEPLOY_PORT) $(server) 'cd $(dir) && git pull origin main && make install && make ccprod && make prod'
+	ssh -p $(DEPLOY_PORT) $(server) 'cd $(dir) && git pull origin main && make install && make checkdb && make ccprod && make prod'
 
 admin: ### Génère le dashboard admin
 	$(sc) make:admin:dashboard
@@ -66,9 +66,12 @@ cc: ### Clear cache in dev
 install: ### Installe les différentes dépendances
 	APP_ENV=prod APP_DEBUG=0 COMPOSE_HTTP_TIMEOUT=200 $(php) composer install --no-dev --optimize-autoloader --no-scripts
 	APP_ENV=prod APP_DEBUG=0 $(php) composer dump-autoload
+	APP_ENV=prod APP_DEBUG=0 $(php) symfony console assets:install --env=prod
+
+checkdb:
 	APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:database:create --if-not-exists --env=prod
 	APP_ENV=prod APP_DEBUG=0 $(php) symfony console doctrine:migrations:migrate --no-interaction --env=prod
-	APP_ENV=prod APP_DEBUG=0 $(php) symfony console assets:install --env=prod
+
 
 ccprod: ## Vide le cache en production
 	APP_ENV=prod APP_DEBUG=0 $(php) symfony console cache:clear --env=prod
