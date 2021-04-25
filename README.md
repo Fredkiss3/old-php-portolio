@@ -1,4 +1,4 @@
-![Build Status](https://github.com/Fredkiss3/portfolio/workflows/CI_CD/badge.svg?branch=main)
+![Build Status](https://github.com/Fredkiss3/portolio/workflows/CI_CD/badge.svg?branch=main)
 
 # portolio
 Mon portfolio personnel
